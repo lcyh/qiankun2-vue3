@@ -34,19 +34,21 @@
 </template>
 
 <script lang="ts" setup>
+import { useAppStore } from "@/store/modules/app";
 import { reactive } from "vue";
 import { useRouter, useRoute } from "vue-router";
-import store from "../store";
 
+const store = useAppStore();
 const router = useRouter();
 const route = useRoute();
 const formState = reactive({
   username: "",
   password: "",
 });
-const login = () => {
-  store.commit("login", "token");
-  store.state.hasInited = false;
+console.log("login-store", store);
+const login = async () => {
+  await store.login({ ...formState, token: "token" });
+  store.hasInited = false;
   router.replace(route.query.redirect || "/");
 };
 </script>

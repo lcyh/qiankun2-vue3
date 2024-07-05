@@ -5,9 +5,20 @@
  */
 import { createApp } from "vue";
 import App from "./App.vue";
-import router from "./router";
-import store from "./store";
+import router, { setupRouter } from "./router";
+import { setupRouterGuard } from "./guard";
+import { setupStore } from "./store";
 import Antd from "ant-design-vue";
 import "ant-design-vue/dist/reset.css";
 
-createApp(App).use(store).use(router).use(Antd).mount("#app");
+async function bootstrap() {
+  const app = createApp(App);
+
+  await setupStore(app);
+  // Configure routing
+  setupRouter(app);
+  setupRouterGuard(router);
+  app.use(Antd).mount("#app");
+}
+
+bootstrap();

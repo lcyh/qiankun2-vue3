@@ -14,10 +14,10 @@
     "core-js": "^3.8.3",
     "js-cookie": "^3.0.5",
     "nprogress": "^0.2.0",
+    "pinia": "2.0.12",
     "qiankun": "^2.0.16",
-    "vue": "^3.2.13",
-    "vue-router": "^4.0.3",
-    "vuex": "^4.0.0"
+    "vue": "^3.3.2",
+    "vue-router": "^4.0.14"
   },
   "devDependencies": {
     "@types/jest": "^27.0.1",
@@ -25,7 +25,6 @@
     "@vue/cli-plugin-router": "~5.0.0",
     "@vue/cli-plugin-typescript": "~5.0.0",
     "@vue/cli-plugin-unit-jest": "~5.0.0",
-    "@vue/cli-plugin-vuex": "~5.0.0",
     "@vue/cli-service": "~5.0.0",
     "@vue/test-utils": "^2.0.0-0",
     "@vue/vue3-jest": "^27.0.0-alpha.1",

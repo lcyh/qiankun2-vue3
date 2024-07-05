@@ -1,14 +1,20 @@
-import store from "../store";
+/*
+ * @Author: changluo
+ * @Description:
+ * @LastEditors: luc19964 luochang@gopherasset.com
+ */
+import { useAppStore } from "../store/modules/app";
 
+const store = useAppStore();
 const model = {
   /**
    * 获取token
    */
-  getToken: () => store.state.token || 1,
+  getToken: () => store.token,
   /**
    * 获取用户数据
    */
-  getUserInfo: () => store.state.userInfo,
+  getUserInfo: () => store.userInfo,
   /**
    * 获取浏览器window
    */
@@ -17,7 +23,7 @@ const model = {
    * 登出
    */
   logout() {
-    store.dispatch("logout");
+    store.logout();
   },
 };
 

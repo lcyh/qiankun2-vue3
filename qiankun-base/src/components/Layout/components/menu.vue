@@ -34,11 +34,12 @@ import { computed, ref, reactive, watch } from "vue";
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons-vue";
 import { useRoute } from "vue-router";
 import MenuItem from "./menu-item.vue";
-import store from "../../../store";
+import { useAppStore } from "../../../store/modules/app";
 
+const store = useAppStore();
 const route = useRoute();
 const routes = computed(() => {
-  return store.state.routes.map((item) => {
+  return store.routes.map((item) => {
     return { ...item };
   });
 });
@@ -54,11 +55,12 @@ watch(
     state.preOpenKeys = oldVal;
   }
 );
-const toggleCollapsed = () => {
-  state.collapsed = !state.collapsed;
-  state.openKeys = state.collapsed ? [] : state.preOpenKeys;
-};
-console.log("菜单组件", { route, routes, selectedKeys: state.selectedKeys });
+console.log("菜单组件", {
+  store,
+  route,
+  routes,
+  selectedKeys: state.selectedKeys,
+});
 </script>
 <style lang="less" scoped>
 .menu-warpper {

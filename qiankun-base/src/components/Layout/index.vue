@@ -47,7 +47,21 @@
         </div>
       </a-layout-sider>
       <a-layout>
-        <a-layout-header class="layout-header"> </a-layout-header>
+        <a-layout-header class="layout-header">
+          <a-dropdown>
+            <div class="user">
+              <img class="avatar" src="../../assets/header.png" />
+              <span class="userName"> {{ userInfo?.username }} </span>
+            </div>
+            <template #overlay>
+              <a-menu>
+                <a-menu-item>
+                  <span @click="handleLogout">退出登录</span>
+                </a-menu-item>
+              </a-menu>
+            </template>
+          </a-dropdown>
+        </a-layout-header>
         <a-layout-content
           :style="{
             margin: '24px 16px',
@@ -74,24 +88,30 @@ import {
   MenuFoldOutlined,
 } from "@ant-design/icons-vue";
 import SubMenu from "./components/sub-menu.vue";
-import store from "../../store";
+import { useAppStore } from "@/store/modules/app";
 
+const store = useAppStore();
 const state = reactive({
   collapsed: false,
   selectedKeys: [],
   openKeys: [],
   preOpenKeys: [],
 });
+const userInfo = computed(() => {
+  return store?.userInfo;
+});
 const routes = computed(() => {
-  return store.state.routes.map((item) => {
+  return store.routes.map((item) => {
     return { ...item };
   });
 });
+const handleLogout = () => {
+  store.logout();
+  console.log("handleLogout");
+};
 </script>
 
 <style lang="less" scoped>
-#main-app {
-}
 #app-qiankun {
   position: relative;
 }
@@ -101,9 +121,25 @@ const routes = computed(() => {
 }
 .layout-header {
   display: flex;
-  justify-content: flex-start;
-  padding: 0;
+  justify-content: flex-end;
+  padding: 0 30px;
   background-color: #fff;
+  .user {
+    &:hover {
+      background-color: #f6f6f6;
+    }
+    .avatar {
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      margin-right: 5px;
+      border-radius: 50%;
+    }
+    .userName {
+      font-size: 14px;
+      cursor: pointer;
+    }
+  }
 }
 .ant-layout-sider {
   position: relative;
