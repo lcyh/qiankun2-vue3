@@ -51,8 +51,10 @@
           }"
         >
           <div class="layou-main">
-            <router-view />
-            <div id="app-qiankun"></div>
+            <!-- 主应用渲染区，用于挂载主应用路由触发的组件 -->
+            <router-view v-show="route.name" />
+            <!-- 子应用渲染区，用于挂载子应用节点 -->
+            <div v-show="!route.name" id="app-qiankun"></div>
           </div>
         </a-layout-content>
       </a-layout>
@@ -65,7 +67,9 @@ import { computed, reactive } from "vue";
 import { MenuUnfoldOutlined, MenuFoldOutlined } from "@ant-design/icons-vue";
 import Menu from "./components/menu.vue";
 import { useAppStore } from "@/store/modules/app";
+import { useRoute } from "vue-router";
 
+const route = useRoute();
 const store = useAppStore();
 const state = reactive({
   collapsed: false,
@@ -75,7 +79,6 @@ const userInfo = computed(() => {
 });
 const handleLogout = () => {
   store.logout();
-  console.log("handleLogout");
 };
 </script>
 

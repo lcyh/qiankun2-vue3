@@ -12,7 +12,6 @@ export const createPermissionGuard = (router) => {
   const whiteList = ["/login"];
   router.beforeEach((to, from, next) => {
     const token = getCookie(TOKEN); //获取token
-    console.log("父应用token", token);
     if (token) {
       userStore.setUserToken(token);
       //token存在
