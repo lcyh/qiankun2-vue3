@@ -22,9 +22,6 @@
           <template v-for="item in routes" :key="item.key">
             <template v-if="!item.children?.length">
               <a-menu-item :key="item.key">
-                <template #icon>
-                  <TeamOutlined />
-                </template>
                 {{ item.title }}
               </a-menu-item>
             </template>

@@ -9,7 +9,7 @@ const asyncRoutes = [
   // 添加 主应用路由到右侧菜单
   {
     path: "/",
-    icon: "app-store-outlined",
+    icon: "AppstoreOutlined",
     type: "main",
     key: "/",
     label: "父应用",
@@ -41,7 +41,7 @@ const asyncRoutes = [
   },
   {
     path: "/vue",
-    icon: "el-icon-location",
+    icon: "TrademarkOutlined",
     type: "micro",
     key: "vue",
     label: "vue",
@@ -73,7 +73,7 @@ const asyncRoutes = [
   },
   {
     path: "/react",
-    icon: "el-icon-location",
+    icon: "PieChartOutlined",
     type: "micro",
     key: "react",
     label: "react",
