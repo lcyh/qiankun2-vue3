@@ -4,36 +4,30 @@
  * @LastEditors: luc19964 luochang@gopherasset.com
 -->
 <template>
-  <div class="menu-warpper">
-    <a-layout-sider
-      v-model:collapsed="state.collapsed"
-      :trigger="null"
-      collapsible
-    >
-      <a-menu
-        class="a-menu-vertical"
-        v-model:openKeys="state.openKeys"
-        v-model:selectedKeys="state.selectedKeys"
-        :items="routes"
-        theme="light"
-        mode="inline"
-      >
-        <MenuItem
-          v-for="item in routes"
-          :key="item.path"
-          :route="item"
-          :base-path="item.path"
-        />
-      </a-menu>
-    </a-layout-sider>
-  </div>
+  <a-menu
+    class="a-menu-vertical"
+    v-model:openKeys="state.openKeys"
+    v-model:selectedKeys="state.selectedKeys"
+    mode="inline"
+    theme="light"
+  >
+    <template v-for="item in routes" :key="item.key">
+      <template v-if="!item.children?.length">
+        <a-menu-item :key="item.key">
+          {{ item.title }}
+        </a-menu-item>
+      </template>
+      <template v-else>
+        <sub-menu :key="item.key" :menu-info="item" />
+      </template>
+    </template>
+  </a-menu>
 </template>
 
 <script lang="ts" setup>
 import { computed, ref, reactive, watch } from "vue";
-import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons-vue";
 import { useRoute } from "vue-router";
-import MenuItem from "./menu-item.vue";
+import SubMenu from "./sub-menu.vue";
 import { useAppStore } from "../../../store/modules/app";
 
 const store = useAppStore();

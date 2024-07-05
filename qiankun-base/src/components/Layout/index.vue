@@ -12,24 +12,7 @@
         collapsible
       >
         <div class="logo" />
-        <a-menu
-          class="a-menu-vertical"
-          v-model:openKeys="state.openKeys"
-          v-model:selectedKeys="state.selectedKeys"
-          mode="inline"
-          theme="light"
-        >
-          <template v-for="item in routes" :key="item.key">
-            <template v-if="!item.children?.length">
-              <a-menu-item :key="item.key">
-                {{ item.title }}
-              </a-menu-item>
-            </template>
-            <template v-else>
-              <sub-menu :key="item.key" :menu-info="item" />
-            </template>
-          </template>
-        </a-menu>
+        <Menu />
         <div class="toggle">
           <menu-unfold-outlined
             v-if="state.collapsed"
@@ -79,28 +62,16 @@
 
 <script lang="ts" setup>
 import { computed, reactive } from "vue";
-import {
-  TeamOutlined,
-  MenuUnfoldOutlined,
-  MenuFoldOutlined,
-} from "@ant-design/icons-vue";
-import SubMenu from "./components/sub-menu.vue";
+import { MenuUnfoldOutlined, MenuFoldOutlined } from "@ant-design/icons-vue";
+import Menu from "./components/menu.vue";
 import { useAppStore } from "@/store/modules/app";
 
 const store = useAppStore();
 const state = reactive({
   collapsed: false,
-  selectedKeys: [],
-  openKeys: [],
-  preOpenKeys: [],
 });
 const userInfo = computed(() => {
   return store?.userInfo;
-});
-const routes = computed(() => {
-  return store.routes.map((item) => {
-    return { ...item };
-  });
 });
 const handleLogout = () => {
   store.logout();

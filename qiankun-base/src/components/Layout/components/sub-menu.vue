@@ -9,12 +9,14 @@
     <template #title>{{ menuInfo.title }}</template>
     <template v-for="item in menuInfo.children" :key="item.key">
       <template v-if="!item.children">
-        <a-menu-item :key="item.key">
-          <template #icon>
-            <PieChartOutlined />
-          </template>
-          {{ item.title }}
-        </a-menu-item>
+        <router-link :to="item.path">
+          <a-menu-item :key="item.key">
+            <template #icon>
+              <PieChartOutlined />
+            </template>
+            {{ item.title }}
+          </a-menu-item>
+        </router-link>
       </template>
       <template v-else>
         <sub-menu :menu-info="item" :key="item.key" />
