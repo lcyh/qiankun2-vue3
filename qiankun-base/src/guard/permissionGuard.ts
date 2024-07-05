@@ -3,11 +3,9 @@
  * @Description:
  * @LastEditors: luc19964 luochang@gopherasset.com
  */
-import startQiankun from "../micro";
-import { getCookie } from "../utils/auth";
-import apps from "../micro/apps";
-import { TOKEN } from "@/utils/constants";
 import { useAppStoreWithOut } from "../store/modules/app";
+import { getCookie } from "../utils/auth";
+import { TOKEN } from "@/utils/constants";
 
 export const createPermissionGuard = (router) => {
   const userStore = useAppStoreWithOut();

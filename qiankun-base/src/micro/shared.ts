@@ -3,9 +3,10 @@
  * @Description:
  * @LastEditors: luc19964 luochang@gopherasset.com
  */
-import { useAppStore } from "../store/modules/app";
 
-const store = useAppStore();
+import { useAppStoreWithOut } from "@/store/modules/app";
+
+const store = useAppStoreWithOut();
 const model = {
   /**
    * 获取token
