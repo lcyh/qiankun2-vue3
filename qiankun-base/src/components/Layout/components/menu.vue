@@ -49,20 +49,20 @@ const handleOpenChange = (val) => {
 watch(
   () => route,
   (val) => {
-    console.log("watch", route);
+    console.log("watch", val);
     const routename = val?.name?.toLocaleLowerCase();
     state.openKeys = ["home"];
     state.selectedKeys = [routename];
   },
-  { immediate: true }
+  { immediate: true, deep: true }
 );
-console.log("菜单组件", {
-  store,
-  route,
-  routes,
-  selectedKeys: state.selectedKeys,
-  openKeys: state.openKeys,
-});
+// console.log("菜单组件", {
+//   store,
+//   route,
+//   routes,
+//   selectedKeys: state.selectedKeys,
+//   openKeys: state.openKeys,
+// });
 </script>
 <style lang="less" scoped>
 .menu-warpper {

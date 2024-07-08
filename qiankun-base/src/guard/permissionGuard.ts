@@ -28,7 +28,7 @@ export const createPermissionGuard = (router) => {
         (res || [])?.forEach((route) => {
           router.addRoute(route);
         });
-        // startQiankun(apps);
+        // startQiankun(microApps);
         userStore.setDynamicAddedRoute(true);
         next({ ...to, replace: true });
       });

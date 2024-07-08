@@ -23,7 +23,7 @@ async function bootstrap() {
   setupRouterGuard(router);
   // micro-app
   startQiankun(microApps);
-  app.use(Antd).mount("#app");
+  app.use(Antd).mount("#baseApp");
 }
 
 bootstrap();

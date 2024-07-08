@@ -4,48 +4,46 @@
  * @LastEditors: luc19964 luochang@gopherasset.com
 -->
 <template>
-  <div id="main-app">
+  <a-layout class="layout-wrapper">
+    <a-layout-sider
+      v-model:collapsed="state.collapsed"
+      :trigger="null"
+      collapsible
+    >
+      <div class="logo" />
+      <Menu />
+      <div class="toggle">
+        <menu-unfold-outlined
+          v-if="state.collapsed"
+          class="trigger"
+          @click="() => (state.collapsed = !state.collapsed)"
+        />
+        <menu-fold-outlined
+          v-else
+          class="trigger"
+          @click="() => (state.collapsed = !state.collapsed)"
+        />
+      </div>
+    </a-layout-sider>
     <a-layout>
-      <a-layout-sider
-        v-model:collapsed="state.collapsed"
-        :trigger="null"
-        collapsible
+      <Header />
+      <a-layout-content
+        :style="{
+          margin: '24px 16px',
+          padding: '24px',
+          background: '#fff',
+          minHeight: '280px',
+        }"
       >
-        <div class="logo" />
-        <Menu />
-        <div class="toggle">
-          <menu-unfold-outlined
-            v-if="state.collapsed"
-            class="trigger"
-            @click="() => (state.collapsed = !state.collapsed)"
-          />
-          <menu-fold-outlined
-            v-else
-            class="trigger"
-            @click="() => (state.collapsed = !state.collapsed)"
-          />
+        <div class="layou-main">
+          <!-- 主应用渲染区，用于挂载主应用路由触发的组件 -->
+          <router-view v-show="route.name" />
+          <!-- 子应用渲染区，用于挂载子应用节点 -->
+          <div id="app-qiankun"></div>
         </div>
-      </a-layout-sider>
-      <a-layout>
-        <Header />
-        <a-layout-content
-          :style="{
-            margin: '24px 16px',
-            padding: '24px',
-            background: '#fff',
-            minHeight: '280px',
-          }"
-        >
-          <div class="layou-main">
-            <!-- 主应用渲染区，用于挂载主应用路由触发的组件 -->
-            <router-view v-show="route.name" />
-            <!-- 子应用渲染区，用于挂载子应用节点 -->
-            <div v-show="!route.name" id="app-qiankun"></div>
-          </div>
-        </a-layout-content>
-      </a-layout>
+      </a-layout-content>
     </a-layout>
-  </div>
+  </a-layout>
 </template>
 
 <script lang="ts" setup>

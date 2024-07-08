@@ -3,6 +3,7 @@
  * @Description:
  * @LastEditors: luc19964 luochang@gopherasset.com
  */
+import { h } from "vue";
 const Layout = () => import("../components/Layout/index.vue");
 
 let routerMap: any[] = [];
@@ -21,7 +22,7 @@ export function fnc(route, options = { children: [] }) {
       key: element.key,
       path: element.path,
       name: element.key,
-      component: { render: (h) => h("span") },
+      component: { render: () => h("span") },
       meta: {
         type: element.type,
       },
