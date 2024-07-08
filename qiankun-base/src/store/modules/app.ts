@@ -11,12 +11,12 @@ const asyncRoutes = [
     path: "/",
     icon: "AppstoreOutlined",
     type: "main",
-    key: "/",
+    key: "home",
     label: "父应用",
     title: "父应用",
     children: [
       {
-        path: "/",
+        path: "/home",
         icon: "app-store-outlined",
         type: "main",
         key: "home",
@@ -24,6 +24,7 @@ const asyncRoutes = [
         title: "home",
         meta: {
           isAuth: true,
+          currentActiveMenu: "/home",
         },
       },
       {
@@ -35,6 +36,7 @@ const asyncRoutes = [
         title: "about",
         meta: {
           isAuth: true,
+          currentActiveMenu: "/about",
         },
       },
     ],
@@ -56,6 +58,7 @@ const asyncRoutes = [
         title: "vue-project",
         meta: {
           isAuth: true,
+          currentActiveMenu: "/vue",
         },
       },
       {
@@ -67,6 +70,7 @@ const asyncRoutes = [
         title: "vue-project-about",
         meta: {
           isAuth: true,
+          currentActiveMenu: "/vue/about",
         },
       },
     ],
@@ -88,6 +92,7 @@ const asyncRoutes = [
         title: "react-project",
         meta: {
           isAuth: true,
+          currentActiveMenu: "/react",
         },
       },
       {
@@ -99,6 +104,7 @@ const asyncRoutes = [
         title: "react-project-about",
         meta: {
           isAuth: true,
+          currentActiveMenu: "/react/about",
         },
       },
     ],

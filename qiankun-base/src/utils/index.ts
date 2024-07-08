@@ -18,6 +18,7 @@ export function fnc(route, options = { children: [] }) {
       return;
     }
     options?.children?.push({
+      key: element.key,
       path: element.path,
       name: element.key,
       component: { render: (h) => h("span") },
@@ -36,6 +37,7 @@ export function routerList(route) {
   routerMap = [];
   route.forEach((element) => {
     routerMap.push({
+      key: element.key,
       path: element.path,
       name: element.key,
       component: Layout,

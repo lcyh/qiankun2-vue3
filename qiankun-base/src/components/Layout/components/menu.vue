@@ -8,6 +8,7 @@
     class="a-menu-vertical"
     v-model:openKeys="state.openKeys"
     v-model:selectedKeys="state.selectedKeys"
+    @openChange="handleOpenChange"
     mode="inline"
     theme="light"
   >
@@ -41,19 +42,26 @@ const state = reactive({
   collapsed: false,
   selectedKeys: [],
   openKeys: [],
-  preOpenKeys: [],
 });
+const handleOpenChange = (val) => {
+  console.log("handleOpenChange", { val, openKeys: state.openKeys });
+};
 watch(
-  () => state.openKeys,
-  (_val, oldVal) => {
-    state.preOpenKeys = oldVal;
-  }
+  () => route,
+  (val) => {
+    console.log("watch", route);
+    const routename = val?.name?.toLocaleLowerCase();
+    state.openKeys = ["home"];
+    state.selectedKeys = [routename];
+  },
+  { immediate: true }
 );
 console.log("菜单组件", {
   store,
   route,
   routes,
   selectedKeys: state.selectedKeys,
+  openKeys: state.openKeys,
 });
 </script>
 <style lang="less" scoped>

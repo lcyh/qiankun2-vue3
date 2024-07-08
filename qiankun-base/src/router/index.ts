@@ -18,9 +18,10 @@ const basicRoutes: Array<RouteRecordRaw> = [
     path: "/",
     name: "",
     component: Layout,
+    redirect: "/home",
     children: [
       {
-        path: "/",
+        path: "/home",
         name: "Home",
         component: Home,
       },
