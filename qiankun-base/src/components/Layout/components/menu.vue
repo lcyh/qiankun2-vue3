@@ -28,7 +28,7 @@
 <script lang="ts" setup>
 import { computed, ref, reactive, watch } from "vue";
 import { useRoute } from "vue-router";
-import SubMenu from "./sub-menu.vue";
+import SubMenu from "./SubMenu.vue";
 import { useAppStore } from "../../../store/modules/app";
 
 const store = useAppStore();

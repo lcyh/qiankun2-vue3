@@ -9,18 +9,20 @@ import router, { setupRouter } from "./router";
 import { setupRouterGuard } from "./guard";
 import { setupStore } from "./store";
 import startQiankun from "./micro";
-import apps from "./micro/apps";
+import microApps from "./micro/apps";
 import Antd from "ant-design-vue";
 import "ant-design-vue/dist/reset.css";
 
 async function bootstrap() {
   const app = createApp(App);
-
+  // store
   await setupStore(app);
-  // Configure routing
+  // configure routing
   setupRouter(app);
+  // permission
   setupRouterGuard(router);
-  startQiankun(apps);
+  // micro-app
+  startQiankun(microApps);
   app.use(Antd).mount("#app");
 }
 
