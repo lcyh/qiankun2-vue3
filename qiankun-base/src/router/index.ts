@@ -11,7 +11,7 @@ import { App } from "vue";
 const basicRoutes: Array<RouteRecordRaw> = [
   {
     path: "/login",
-    name: "login",
+    name: "Login",
     component: () => import("../views/Login.vue"),
   },
   {

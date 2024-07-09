@@ -37,7 +37,11 @@
       >
         <div class="layou-main">
           <!-- 主应用渲染区，用于挂载主应用路由触发的组件 -->
-          <router-view v-show="route.name" />
+          <RouterView v-show="route.name">
+            <template #default="{ Component, route }">
+              <component :is="Component" :key="route.fullPath" />
+            </template>
+          </RouterView>
           <!-- 子应用渲染区，用于挂载子应用节点 -->
           <div id="app-qiankun"></div>
         </div>

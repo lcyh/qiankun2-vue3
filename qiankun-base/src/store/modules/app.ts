@@ -11,16 +11,14 @@ const asyncRoutes = [
     path: "/",
     icon: "AppstoreOutlined",
     type: "main",
-    key: "home",
-    label: "父应用",
+    name: "Home",
     title: "父应用",
     children: [
       {
         path: "/home",
         icon: "app-store-outlined",
         type: "main",
-        key: "home",
-        label: "home",
+        name: "Home",
         title: "home",
         meta: {
           isAuth: true,
@@ -31,8 +29,7 @@ const asyncRoutes = [
         path: "/about",
         icon: "el-icon-location",
         type: "main",
-        key: "about",
-        label: "about",
+        name: "About",
         title: "about",
         meta: {
           isAuth: true,
@@ -45,16 +42,14 @@ const asyncRoutes = [
     path: "/vue",
     icon: "TrademarkOutlined",
     type: "micro",
-    key: "vue",
-    label: "vue",
+    name: "Vue",
     title: "vue",
     children: [
       {
         path: "/vue",
         icon: "el-icon-location",
         type: "micro",
-        key: "vue-project",
-        label: "vue-project",
+        name: "VueProject",
         title: "vue-project",
         meta: {
           isAuth: true,
@@ -65,8 +60,7 @@ const asyncRoutes = [
         path: "/vue/about",
         icon: "el-icon-location",
         type: "micro",
-        key: "vue-about",
-        label: "vue-project-about",
+        name: "VueAbout",
         title: "vue-project-about",
         meta: {
           isAuth: true,
@@ -75,40 +69,38 @@ const asyncRoutes = [
       },
     ],
   },
-  {
-    path: "/react",
-    icon: "PieChartOutlined",
-    type: "micro",
-    key: "react",
-    label: "react",
-    title: "react",
-    children: [
-      {
-        path: "/react",
-        icon: "el-icon-location",
-        type: "micro",
-        key: "react-project",
-        label: "react-project",
-        title: "react-project",
-        meta: {
-          isAuth: true,
-          currentActiveMenu: "/react",
-        },
-      },
-      {
-        path: "/react/about",
-        icon: "el-icon-location",
-        type: "micro",
-        key: "react-project-about",
-        label: "react-project-about",
-        title: "react-project-about",
-        meta: {
-          isAuth: true,
-          currentActiveMenu: "/react/about",
-        },
-      },
-    ],
-  },
+  // {
+  //   path: "/react",
+  //   icon: "PieChartOutlined",
+  //   type: "micro",
+  //   name: "react",
+  //   title: "react",
+  //   children: [
+  //     {
+  //       path: "/react",
+  //       icon: "el-icon-location",
+  //       type: "micro",
+  //       name: "react-project",
+  //       title: "react-project",
+  //       meta: {
+  //         isAuth: true,
+  //         currentActiveMenu: "/react",
+  //       },
+  //     },
+  //     {
+  //       path: "/react/about",
+  //       icon: "el-icon-location",
+  //       type: "micro",
+  //       name: "react-project-about",
+
+  //       title: "react-project-about",
+  //       meta: {
+  //         isAuth: true,
+  //         currentActiveMenu: "/react/about",
+  //       },
+  //     },
+  //   ],
+  // },
 ];
 export const useAppStore = defineStore({
   id: "app-user",
@@ -129,6 +121,9 @@ export const useAppStore = defineStore({
     },
   },
   actions: {
+    setDynamicRoutes(routes) {
+      this.routes = routes;
+    },
     setDynamicAddedRoute(added: boolean) {
       this.isDynamicAddedRoute = added;
     },
@@ -156,8 +151,10 @@ export const useAppStore = defineStore({
     },
     addRouters() {
       return new Promise((resolve) => {
-        console.log("routes-store", this.routes);
+        console.log("routes-store-1", this.routes);
         const list = routerList(this.routes);
+        this.setDynamicRoutes(list);
+        console.log("routes-store-2", this.routes);
         resolve(list);
       });
     },
