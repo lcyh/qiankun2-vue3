@@ -46,7 +46,7 @@ const asyncRoutes = [
     title: "vue",
     children: [
       {
-        path: "/vue",
+        path: "/vue/",
         icon: "el-icon-location",
         type: "micro",
         name: "VueProject",
