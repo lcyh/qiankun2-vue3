@@ -12,19 +12,19 @@ let routerMap: any[] = [];
  * @param route
  * @param options
  */
-export function fnc(route, options = { children: [] }) {
+export function fnc(route, options = { children: [], name: "" }) {
   route.forEach((element, index) => {
-    if (element.children) {
+    if (element?.children?.length) {
       fnc(element.children, routerMap[index]);
       return;
     }
     options?.children?.push({
-      key: element.key,
-      path: element.path,
-      name: element.key,
-      component: { render: () => h("span") },
+      ...element,
+      name: element.name?.toLocaleLowerCase(),
       meta: {
+        ...element?.meta,
         type: element.type,
+        parentName: options?.name,
       },
     });
   });
@@ -38,12 +38,12 @@ export function routerList(route) {
   routerMap = [];
   route.forEach((element) => {
     routerMap.push({
-      key: element.key,
-      path: element.path,
-      name: element.key,
+      ...element,
+      name: element.name?.toLocaleLowerCase(),
       component: Layout,
       meta: {
         type: element.type,
+        name: element?.name,
       },
       children: [],
     });
